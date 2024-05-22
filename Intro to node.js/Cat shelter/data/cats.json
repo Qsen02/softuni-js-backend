@@ -1,0 +1,37 @@
+[
+  {
+    "id": "1",
+    "catName": "Tomi",
+    "imgURL": "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+    "breed": "Bombay Cat",
+    "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+  },
+  {
+    "id": "2",
+    "catName": "Ivcho",
+    "imgURL": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+    "breed": "Bombay Cat",
+    "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+  },
+  {
+    "id": "3",
+    "catName": "Pesho",
+    "imgURL": "https://cdn.pixabay.com/photo/2018/08/08/05/12/cat-3591348_1280.jpg",
+    "breed": "Bombay Cat",
+    "description": "Dominant and aggressive to other cats. Will probably eat you in your sleep. Very cute tho."
+  },
+  {
+    "catName": "Wolly",
+    "imgURL": "\\content\\images\\nai-skapite-porodi-kotki-sveta-067.jpg",
+    "breed": "angora",
+    "description": "Very cute cat",
+    "id": "4"
+  },
+  {
+    "catName": "Tuffy",
+    "imgURL": "\\content\\images\\980x551_1545916538.jpg",
+    "breed": "persian",
+    "description": "Very sleepy cat",
+    "id": "5"
+  }
+]
