@@ -6,7 +6,6 @@ function showCreateForm(req, res) {
 
 function onCreate(req, res) {
     let data = req.body;
-    console.log(data);
     createMovie(data);
     res.redirect("/");
 }

@@ -20,11 +20,9 @@ async function createMovie(newMovie) {
 }
 
 function searching(values) {
-    console.log(values)
     let results = data.filter(el => el.title.includes(values.title) ||
         el.genre.includes(values.genre) ||
         String(el.year).includes(values.year));
-    console.log(results);
     return results;
 }
 
