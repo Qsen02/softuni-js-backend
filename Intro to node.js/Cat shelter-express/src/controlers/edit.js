@@ -3,6 +3,10 @@ const { getCatById, getAllBreeds, editCat } = require("../services/dataService")
 async function showEditForm(req, res) {
     let id = req.params.id;
     let cat = await getCatById(id);
+    if (!cat) {
+        res.render("404");
+        return;
+    }
     let breeds = await getAllBreeds();
     let breed = breeds.find(el => el.breedName == cat.breed);
     let index = breeds.indexOf(breed);

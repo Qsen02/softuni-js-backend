@@ -18,6 +18,10 @@ router.post("/cats/edit/:id", onEdit);
 router.get("/cats/delete/:id", showDeleteFrom);
 router.post("/cats/delete/:id", onDelete);
 
+router.get("*", (req, res) => {
+    res.render("404");
+})
+
 module.exports = {
     router
 }
