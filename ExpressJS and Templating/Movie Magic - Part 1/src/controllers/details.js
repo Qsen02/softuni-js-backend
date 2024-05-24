@@ -1,8 +1,14 @@
 const { getMovieById } = require("../services/dataService");
 
-function showDetails(req, res) {
+async function showDetails(req, res) {
     let id = req.params.id;
-    let movie = getMovieById(id);
+    let movie = await getMovieById(id);
+    if (!movie) {
+        res.render("error");
+        return;
+    }
+    let count = movie.rating
+    movie.rating = "&#9733;".repeat(count);
     res.render("details", { movie });
 }
 

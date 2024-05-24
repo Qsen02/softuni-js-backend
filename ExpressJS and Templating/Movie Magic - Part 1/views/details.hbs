@@ -1,4 +1,4 @@
-{{#each movie}}
+{{#with movie}}
 <section id="details-page">
 
     <div class="main_card">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="second-info">
                         <p class="card-year">Year: {{year}}</p>
-                        <p class="card-ranking">Rating: <span id="stars">{{rating}}</span></p>
+                        <p class="card-ranking">Rating: <span id="stars">{{{rating}}}</span></p>
                     </div>
 
                 </div>
@@ -27,4 +27,4 @@
     </div>
 
 </section>
-{{/each}}
+{{/with}}

@@ -1,7 +1,7 @@
 let { getMovies } = require("../services/dataService")
 
-function showHome(req, res) {
-    let movies = getMovies();
+async function showHome(req, res) {
+    let movies = await getMovies();
     let hasMovies = true;
     if (movies.length == 0) {
         hasMovies = false;

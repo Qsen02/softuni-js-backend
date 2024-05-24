@@ -4,9 +4,9 @@ function showCreateForm(req, res) {
     res.render("create");
 }
 
-function onCreate(req, res) {
+async function onCreate(req, res) {
     let data = req.body;
-    createMovie(data);
+    await createMovie(data);
     res.redirect("/");
 }
 

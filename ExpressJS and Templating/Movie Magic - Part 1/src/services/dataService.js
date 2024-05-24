@@ -1,28 +1,49 @@
-let data = require("../../data/movies.json");
 let fs = require("fs/promises");
 let path = require("path");
 
-function getMovies() {
+async function readData() {
+    let data = await fs.readFile(path.join("data", "movies.json"));
+    return JSON.parse(data);
+}
+
+async function writeData(data) {
+    await fs.writeFile(path.join("data", "movies.json"), JSON.stringify(data, null, 2));
+}
+
+async function getMovies() {
+    let data = await readData();
     return data;
 }
 
-function getMovieById(id) {
-    let movie = data.find(el => Number(el.id) == Number(id));
-    return [movie];
+async function getMovieById(id) {
+    let data = await readData();
+    let movie = data.find(el => el.id == id);
+    return movie;
 }
 
 async function createMovie(newMovie) {
-    let id = data.length + 1;
+    let data = await readData();
+    let id = "xxx-xxx-xxx".replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
+    newMovie.rating = Number(rating);
     newMovie.id = id;
     data.push(newMovie);
-    await fs.writeFile(path.join("data", "movies.json"), JSON.stringify(data, null, 2));
+    await writeData(data);
     return newMovie;
 }
 
-function searching(values) {
-    let results = data.filter(el => el.title.includes(values.title) ||
-        el.genre.includes(values.genre) ||
-        String(el.year).includes(values.year));
+async function searching(values) {
+    let data = await readData();
+    if (values.year == "") {
+        values.year = 0;
+    }
+    if (values.title == "" && values.genre == "" && values.year == 0) {
+        return data;
+    }
+    let results = data.filter(el =>
+        el.title.toLowerCase() == values.title.toLowerCase() ||
+        el.genre.toLowerCase() == values.genre.toLowerCase() ||
+        el.year == values.year
+    );
     return results;
 }
 
