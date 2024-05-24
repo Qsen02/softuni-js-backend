@@ -6,6 +6,19 @@ function showCreateForm(req, res) {
 
 async function onCreate(req, res) {
     let data = req.body;
+    let errors = {
+        title: !data.title,
+        director: !data.director,
+        year: !data.year,
+        description: !data.description,
+        genre: !data.genre,
+        rating: !data.rating,
+        imageURL: !data.imageURL
+    }
+    if (Object.values(errors).includes(true)) {
+        res.render("create", { movie: req.body, errors });
+        return;
+    }
     await createMovie(data);
     res.redirect("/");
 }

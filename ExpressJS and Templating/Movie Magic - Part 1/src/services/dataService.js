@@ -24,7 +24,6 @@ async function getMovieById(id) {
 async function createMovie(newMovie) {
     let data = await readData();
     let id = "xxx-xxx-xxx".replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
-    newMovie.rating = Number(rating);
     newMovie.id = id;
     data.push(newMovie);
     await writeData(data);
