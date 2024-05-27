@@ -18,14 +18,24 @@ async function showEditForm(req, res) {
 async function onEdit(req, res) {
     let id = req.params.id;
     let cat = await getCatById(id);
+    let data = req.body;
+    let errors = {
+        name: !data.name,
+        description: !data.description,
+        bree: !data.breed
+    }
     let imgURLArr = cat.imgURL.split("\\");
     let imgToDel = imgURLArr[imgURLArr.length - 1];
-    let data = req.body;
     if (req.file) {
         let imgFile = req.file;
         let imgPath = imgFile.path;
         data["imgURL"] = "\\" + imgPath;
         console.log(data);
+    }
+    if (Object.values(errors).includes(true)) {
+        let breeds = await getAllBreeds();
+        res.render("editCats", { vars: { cat, breeds }, errors });
+        return;
     }
     await editCat(id, data);
     if (imgToDel) {

@@ -1,5 +1,4 @@
 const { getAllBreeds, createCat } = require("../services/data");
-const path = require("path");
 
 async function showCreateForm(req, res) {
     let breeds = await getAllBreeds();
@@ -8,6 +7,11 @@ async function showCreateForm(req, res) {
 
 async function onCreateCat(req, res) {
     const fields = req.body;
+    let errors = {
+        name: !fields.name,
+        description: !fields.description,
+        bree: !fields.breed
+    }
     let name = fields.name;
     let description = fields.description;
     let breed = fields.breed;
@@ -19,9 +23,12 @@ async function onCreateCat(req, res) {
         imgPath = imgFile.path;
     }
 
-    if (name && description) {
-        await createCat({ name, description, imgURL: "\\" + imgPath, breed });
+    if (Object.values(errors).includes(true)) {
+        let breeds = await getAllBreeds();
+        res.render("addCat", { cats: req.body, errors, breeds });
+        return;
     }
+    await createCat({ name, description, imgURL: "\\" + imgPath, breed });
     res.redirect("/");
 }
 

@@ -239,3 +239,23 @@ body>form>label:nth-child(3) {
     display: block;
     margin-top: 100px;
 }
+
+.notification {
+    display: none;
+    background-color: white;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.notification p {
+    position: relative;
+    bottom: -20px;
+}
+
+.errorFields {
+    color: red;
+}
