@@ -54,6 +54,9 @@ async function deleteCat(id) {
 async function editCat(id, catData) {
     let data = await readData();
     let cat = data.cats.find(el => el.id == id);
+    if (catData.imgURL) {
+        cat.imgURL = catData.imgURL;
+    }
     cat.breed = catData.breed;
     cat.description = catData.description;
     cat.name = catData.name;

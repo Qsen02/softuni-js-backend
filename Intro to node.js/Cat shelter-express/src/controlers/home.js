@@ -1,4 +1,4 @@
-const { getAllCats, searching } = require("../services/dataService");
+const { getAllCats, searching } = require("../services/data");
 
 async function showHome(req, res) {
     let cats = await getAllCats();

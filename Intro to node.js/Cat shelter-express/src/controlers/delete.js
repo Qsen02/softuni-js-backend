@@ -1,4 +1,5 @@
-const { getCatById, deleteCat } = require("../services/dataService");
+const { getCatById, deleteCat } = require("../services/data");
+const { delImg } = require("../services/images");
 
 async function showDeleteFrom(req, res) {
     let id = req.params.id;
@@ -12,7 +13,13 @@ async function showDeleteFrom(req, res) {
 
 async function onDelete(req, res) {
     let id = req.params.id;
+    let cat = await getCatById(id);
+    let imgURLArr = cat.imgURL.split("\\");
+    let imgName = imgURLArr[imgURLArr.length - 1];
     await deleteCat(id);
+    if (imgName) {
+        await delImg(imgName);
+    }
     res.redirect("/");
 }
 

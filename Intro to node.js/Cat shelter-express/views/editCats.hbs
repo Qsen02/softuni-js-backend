@@ -1,5 +1,5 @@
 {{#with vars}}
-<form action="/cats/edit/{{cat.id}}" method="post" class="cat-form">
+<form action="/cats/edit/{{cat.id}}" method="post" class="cat-form" enctype="multipart/form-data">
     <h2>Edit Cat</h2>
     <label for="name">Name</label>
     <input name="name" type="text" id="name" value="{{cat.name}}">

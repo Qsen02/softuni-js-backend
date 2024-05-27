@@ -1,4 +1,4 @@
-const { createBreed } = require("../services/dataService");
+const { createBreed } = require("../services/data");
 
 function showBreedForm(req, res) {
     res.render("addBreed");

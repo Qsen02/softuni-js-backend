@@ -23,17 +23,17 @@
     },
     {
       "name": "Sami",
-      "description": "Very sleepy cat.",
-      "imgURL": "980x551_1545916538.jpg",
-      "breed": "Angora",
-      "id": "952-363-a3a"
+      "description": "Very playfull cat",
+      "imgURL": "\\content\\images\\imgURL-1716797571894-955262374-nai-skapite-porodi-kotki-sveta-067.jpg",
+      "breed": "British short haired",
+      "id": "591-c0d-b62"
     },
     {
       "name": "Tuffy",
-      "description": "Very playfully cat.",
-      "imgURL": "",
-      "breed": "American long haired",
-      "id": "6d6-a5c-664"
+      "description": "Very sleepy cat",
+      "imgURL": "\\content\\images\\imgURL-1716797599508-825923630-980x551_1545916538.jpg",
+      "breed": "Siames",
+      "id": "55c-248-46b"
     }
   ],
   "breeds": [
