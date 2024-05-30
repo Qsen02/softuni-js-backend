@@ -1,0 +1,30 @@
+{{#with moviehdb}}
+<section id="details-page">
+
+    <div class="main_card">
+        <div class="card_left">
+            <div class="card_datails">
+
+                <h1>{{titlehdb}}</h1>
+                <div class="card-movie">
+                    <div class="first-info">
+                        <p class="card-genre">Genre: {{genrehdb}}</p>
+                        <p class="card-director">Directror: {{director}}</p>
+                    </div>
+                    <div class="second-info">
+                        <p class="card-year">Year: {{yearhdb}}</p>
+                        <p class="card-ranking">Rating: <span id="stars">{{{ratinghdb}}}</span></p>
+                    </div>
+
+                </div>
+
+                <p class="disc">Description: {{descriptionhdb}}</p>
+            </div>
+        </div>
+        <div class="card_right">
+            <img src="{{imageURLhdb}}" alt="image">
+        </div>
+    </div>
+
+</section>
+{{/with}}

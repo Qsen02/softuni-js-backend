@@ -1,0 +1,36 @@
+<section id="search">
+    <h1>Search</h1>
+    <form action="/search" method="get" class="form">
+        <input type="text" class="search" name="title" placeholder="Title...">
+        <input type="text" name="genre" class="genre" placeholder="Genre...">
+        <input type="number" name="year" class="year" placeholder="Year...">
+        <input type="submit" value="search">
+    </form>
+</section>
+
+<section id="catalog">
+    <div class="band">
+        <!-- If there are posts for movie in the database display each of them -->
+        {{#if hasMovies}}
+        {{#each movieshdb}}
+        <div class="flip flip-vertical">
+            <div class="front">
+                <img src="{{imageURLhdb}}" alt="Jungle-Couise">
+            </div>
+            <div class="back">
+                <h1>{{titlehdb}}</h1>
+                <h2>Genre: {{genrehdb}}</h2>
+                <p>Description: {{descriptionhdb}}
+                </p>
+                <a href="/details/{{id}}" class="details">Details</a>
+            </div>
+        </div>
+        {{/each}}
+        {{else}}
+        <!-- If there are no posts matched display: -->
+        <div class="no-posts">
+            <p class="no-offer">There are no movies matched...</p>
+         </div>
+        {{/if}}
+    </div>
+</section>
