@@ -16,16 +16,22 @@ function createMovie(newMovie) {
     return movie.lean();
 }
 
-function searching(values) {
-    if (values.year == "") {
-        values.year = 0;
-    }
-    if (values.title == "" && values.genre == "" && values.year == 0) {
+function searching({ title, genre, year }) {
+    let query = {};
+    if (title == "" && genre == "" && year == 0) {
         let results = Movies.find();
         return results;
     }
-    let results = Movies.find(values);
-    return results;
+    if (title) {
+        query.title = new RegExp(title, "i");
+    }
+    if (genre) {
+        query.genre = genre.toLowerCase();
+    }
+    if (year) {
+        query.year = year;
+    }
+    return Movies.find(query);
 }
 
 module.exports = {
