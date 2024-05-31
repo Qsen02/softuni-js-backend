@@ -7,7 +7,9 @@ const castsSchema = new mongoose.Schema({
     },
     age: {
         type: Number,
-        require: true
+        require: true,
+        min: 1,
+        max: 255
     },
     born: {
         type: String,
@@ -19,11 +21,11 @@ const castsSchema = new mongoose.Schema({
     },
     castImg: {
         type: String,
-        reuire: true
-    },
-    movie: {
-        type: Types.ObjectId,
-        ref: "Movies"
+        reuire: true,
+        validator(value) {
+            return /^https?:\/\//.test(value)
+        },
+        message: (props) => `${props.value} is not valid URL!`
     }
 })
 

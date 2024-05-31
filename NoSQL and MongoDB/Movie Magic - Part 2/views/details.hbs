@@ -1,30 +1,45 @@
-{{#with moviehdb}}
+{{#with movie}}
 <section id="details-page">
 
     <div class="main_card">
         <div class="card_left">
             <div class="card_datails">
 
-                <h1>{{titlehdb}}</h1>
+                <h1>{{title}}</h1>
                 <div class="card-movie">
                     <div class="first-info">
-                        <p class="card-genre">Genre: {{genrehdb}}</p>
+                        <p class="card-genre">Genre: {{genre}}</p>
                         <p class="card-director">Directror: {{director}}</p>
                     </div>
                     <div class="second-info">
-                        <p class="card-year">Year: {{yearhdb}}</p>
-                        <p class="card-ranking">Rating: <span id="stars">{{{ratinghdb}}}</span></p>
+                        <p class="card-year">Year: {{year}}</p>
+                        <p class="card-ranking">Rating: <span id="stars">{{{rating}}}</span></p>
                     </div>
 
                 </div>
 
-                <p class="disc">Description: {{descriptionhdb}}</p>
+                <p class="disc">Description: {{description}}</p>
             </div>
         </div>
         <div class="card_right">
-            <img src="{{imageURLhdb}}" alt="image">
+            <img src="{{imageURL}}" alt="image">
         </div>
     </div>
-
+    <div class="main-cast-card">
+        {{#each casts}}
+        <div class="cast-card">
+            <div class="card-img">
+                <img src="{{castImg}}"
+                    alt="{{name}}">
+            </div>
+            <div class="cast-info">
+                <h1>{{name}}</h1>
+                <h3>Age: {{age}}</h3>
+                <h3>Born: {{born}}</h3>
+                <h3>Name in Movie: {{nameInMovie}}</h3>
+            </div>
+        </div>
+        {{/each}}
+    </div>
 </section>
 {{/with}}

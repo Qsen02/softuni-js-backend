@@ -1,7 +1,7 @@
 const { createMovie } = require("../services/movies");
 
 function showCreateForm(req, res) {
-    res.render("create");
+    res.render("createMovie");
 }
 
 async function onCreate(req, res) {
@@ -16,7 +16,7 @@ async function onCreate(req, res) {
         imageURL: !data.imageURL
     }
     if (Object.values(errors).includes(true)) {
-        res.render("create", { movie: req.body, errors });
+        res.render("createMovie", { movie: req.body, errors });
         return;
     }
     await createMovie(data);

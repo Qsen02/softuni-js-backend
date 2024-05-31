@@ -1,30 +1,30 @@
 const { Movies } = require("../models/movies");
 
-async function getMovies() {
-    const data = await Movies.find({});
+function getMovies() {
+    const data = Movies.find();
     return data;
 }
 
-async function getMovieById(id) {
-    let data = await Movies.findById(id);
+function getMovieById(id) {
+    let data = Movies.findById(id).populate('casts');
     return data;
 }
 
-async function createMovie(newMovie) {
+function createMovie(newMovie) {
     const movie = new Movies(newMovie);
-    await movie.save();
-    return movie;
+    movie.save();
+    return movie.lean();
 }
 
-async function searching(values) {
+function searching(values) {
     if (values.year == "") {
         values.year = 0;
     }
     if (values.title == "" && values.genre == "" && values.year == 0) {
-        let results = await Movies.find({});
+        let results = Movies.find();
         return results;
     }
-    let results = await Movies.find(values);
+    let results = Movies.find(values);
     return results;
 }
 

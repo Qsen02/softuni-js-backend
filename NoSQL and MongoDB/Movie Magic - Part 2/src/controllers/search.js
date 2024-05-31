@@ -1,26 +1,12 @@
 const { getMovies, searching } = require("../services/movies");
 
 async function showSerchMenu(req, res) {
-    let movies = await getMovies();
+    let movies = await getMovies().lean();
     let hasMovies = true;
-    let movieshdb = [];
     if (movies.length == 0) {
         hasMovies = false;
-    } else {
-        for (let movie of movies) {
-            let moviehdb = {};
-            moviehdb["id"] = movie._id;
-            moviehdb["titlehdb"] = movie.title;
-            moviehdb["genrehdb"] = movie.genre;
-            moviehdb["descriptionhdb"] = movie.description;
-            moviehdb["directorhdb"] = movie.director;
-            moviehdb["imageURLhdb"] = movie.imageURL;
-            moviehdb["ratinghdb"] = movie.rating;
-            moviehdb["yearhdb"] = movie.year;
-            movieshdb.push(moviehdb);
-        }
     }
-    res.render("search", { movieshdb, hasMovies })
+    res.render("search", { movies, hasMovies })
 }
 
 async function onSearch(req, res) {
@@ -39,26 +25,12 @@ async function onSearch(req, res) {
         valuesObj.genre = valuesObj.genre.trim();
         valuesObj.genre = valuesObj.genre.replaceAll("+", " ");
     }
-    let movies = await searching(valuesObj);
+    let movies = await searching(valuesObj).lean();
     let hasMovies = true;
-    let movieshdb = [];
     if (movies.length == 0) {
         hasMovies = false;
-    } else {
-        for (let movie of movies) {
-            let moviehdb = {};
-            moviehdb["id"] = movie._id;
-            moviehdb["titlehdb"] = movie.title;
-            moviehdb["genrehdb"] = movie.genre;
-            moviehdb["descriptionhdb"] = movie.description;
-            moviehdb["directorhdb"] = movie.director;
-            moviehdb["imageURLhdb"] = movie.imageURL;
-            moviehdb["ratinghdb"] = movie.rating;
-            moviehdb["yearhdb"] = movie.year;
-            movieshdb.push(moviehdb);
-        }
     }
-    res.render("search", { movieshdb, hasMovies })
+    res.render("search", { movies, hasMovies })
 }
 
 module.exports = {

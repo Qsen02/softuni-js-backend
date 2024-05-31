@@ -16,10 +16,18 @@ const moviesSchema = new mongoose.Schema({
     year: {
         type: Number,
         require: true,
-        min: [1, "min number must be 1"],
-        max: [2024, "max number must be 2024"]
+        min: [1878, "min number must be 1878"],
+        max: [2034, "max number must be 2034"]
     },
-    imageURL: String,
+    imageURL: {
+        type: String,
+        require: true,
+        validator(value) {
+            return /^https?:\/\//.test(value)
+        },
+        message: (props) => `${props.value} is not valid URL!`
+    },
+
     rating: {
         type: Number,
         require: true,
@@ -29,11 +37,12 @@ const moviesSchema = new mongoose.Schema({
     description: {
         type: String,
         require: true,
-        maxLength: [50, "description must be max 50 characters"]
+        maxLength: [1000, "description must be max 1000 characters"]
     },
     casts: {
-        type: [Object],
-        ref: "Casts"
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Casts",
+        default: []
     }
 })
 

@@ -4,11 +4,16 @@ const { hbsConfig } = require("./config/handelbars");
 const { expressConfig } = require("./config/express");
 const { main } = require("./config/mongoose");
 
-main();
-let app = express();
-hbsConfig(app);
-expressConfig(app);
+async function start() {
+    await main();
+    let app = express();
+    hbsConfig(app);
+    expressConfig(app);
 
-app.use(router);
+    app.use(router);
+    app.listen(3000, () => {
+        console.log("server is listening...")
+    });
+}
 
-app.listen(3000);
+start();

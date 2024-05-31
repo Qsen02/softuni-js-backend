@@ -1,7 +1,13 @@
 const { Casts } = require("../models/casts");
+const { Movies } = require("../models/movies");
 
-async function getAllCasts() {
-    let data = await Casts.find({});
+function getAllCasts() {
+    let data = Casts.find();
+    return data;
+}
+
+function getCastById(id) {
+    let data = Casts.findById(id);
     return data;
 }
 
@@ -11,7 +17,13 @@ async function createCast(data) {
     return cast;
 }
 
+async function attach(movieId, castData) {
+    return await Movies.findByIdAndUpdate(movieId, { $push: { casts: castData } });
+}
+
 module.exports = {
     getAllCasts,
-    createCast
+    createCast,
+    getCastById,
+    attach
 }
