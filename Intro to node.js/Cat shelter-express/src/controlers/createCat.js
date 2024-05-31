@@ -1,7 +1,7 @@
 const { getAllBreeds, createCat } = require("../services/data");
 
 async function showCreateForm(req, res) {
-    let breeds = await getAllBreeds();
+    let breeds = await getAllBreeds().lean();
     res.render("addCat", { breeds });
 }
 
@@ -24,7 +24,7 @@ async function onCreateCat(req, res) {
     }
 
     if (Object.values(errors).includes(true)) {
-        let breeds = await getAllBreeds();
+        let breeds = await getAllBreeds().lean();
         res.render("addCat", { cats: req.body, errors, breeds });
         return;
     }

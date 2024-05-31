@@ -3,12 +3,12 @@ const { delImg } = require("../services/images");
 
 async function showEditForm(req, res) {
     let id = req.params.id;
-    let cat = await getCatById(id);
+    let cat = await getCatById(id).lean();
     if (!cat) {
         res.render("404");
         return;
     }
-    let breeds = await getAllBreeds();
+    let breeds = await getAllBreeds().lean();
     let breed = breeds.find(el => el.breedName == cat.breed);
     let index = breeds.indexOf(breed);
     breeds.splice(index, 1);
@@ -17,7 +17,7 @@ async function showEditForm(req, res) {
 
 async function onEdit(req, res) {
     let id = req.params.id;
-    let cat = await getCatById(id);
+    let cat = await getCatById(id).lean();
     let data = req.body;
     let errors = {
         name: !data.name,
@@ -30,10 +30,10 @@ async function onEdit(req, res) {
         let imgFile = req.file;
         let imgPath = imgFile.path;
         data["imgURL"] = "\\" + imgPath;
-        console.log(data);
+
     }
     if (Object.values(errors).includes(true)) {
-        let breeds = await getAllBreeds();
+        let breeds = await getAllBreeds().lean();
         res.render("editCats", { vars: { cat, breeds }, errors });
         return;
     }

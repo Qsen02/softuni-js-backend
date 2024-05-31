@@ -1,0 +1,36 @@
+[{
+        "name": "Ivcho",
+        "description": "A calm and loving cat who likes to sleep in the sun.",
+        "breed": "Persian",
+        "imgURL": "https://ichef.bbci.co.uk/news/976/cpsprodpb/12A9B/production/_111434467_gettyimages-1143489763.jpg",
+        "id": "8d7-6a3-81f"
+    },
+    {
+        "name": "Gosho",
+        "description": "An energetic cat who likes to play with small balls.",
+        "breed": "Siames",
+        "imgURL": "https://cdn.pixabay.com/photo/2015/06/19/14/20/cat-814952_1280.jpg",
+        "id": "b06-c1a-7e4"
+    },
+    {
+        "name": "Pesho",
+        "description": "A mysterious cat with glowing green eyes that prefers the night.",
+        "breed": "British short haired",
+        "imgURL": "https://cdn.pixabay.com/photo/2018/08/08/05/12/cat-3591348_1280.jpg",
+        "id": "f13-1c9-153"
+    },
+    {
+        "name": "Sami",
+        "description": "Very playfull cat",
+        "imgURL": "\\content\\images\\imgURL-1716825993902-643602711-nai-skapite-porodi-kotki-sveta-067.jpg",
+        "breed": "British short haired",
+        "id": "591-c0d-b62"
+    },
+    {
+        "name": "Tuffy",
+        "description": "Very sleepy cat",
+        "imgURL": "\\content\\images\\imgURL-1716797599508-825923630-980x551_1545916538.jpg",
+        "breed": "Siames",
+        "id": "55c-248-46b"
+    }
+]

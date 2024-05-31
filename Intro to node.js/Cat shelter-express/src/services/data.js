@@ -1,73 +1,44 @@
-let fs = require("fs/promises");
-let path = require("path");
+let { Breeds } = require("../models/breeds");
+let { Cats } = require("../models/cats");
 
-async function readData() {
-    let data = await fs.readFile(path.join("data", "data.json"));
-    return JSON.parse(data);
+function getAllCats() {
+    let data = Cats.find();
+    return data;
 }
 
-async function writeData(data) {
-    await fs.writeFile(path.join("data", "data.json"), JSON.stringify(data, null, 2));
+function getAllBreeds() {
+    let data = Breeds.find();
+    return data;
 }
 
-async function getAllCats() {
-    let data = await readData();
-    return data.cats;
-}
-
-async function getAllBreeds() {
-    let data = await readData();
-    return data.breeds;
-}
-
-async function getCatById(id) {
-    let data = await readData();
-    let curCat = data.cats.find(el => el.id == id);
-    return curCat;
+function getCatById(id) {
+    let data = Cats.findById(id);
+    return data;
 }
 
 async function createCat(cat) {
-    let data = await readData();
-    let id = "xxx-xxx-xxx".replace(/x/g, () => (Math.random() * 16 | 0).toString(16));
-    cat.id = id;
-    data.cats.push(cat);
-    await writeData(data);
-    return cat;
+    let newCat = new Cats(cat);
+    await newCat.save();
+    return newCat;
 }
 
 async function createBreed(breed) {
-    let data = await readData();
-    data.breeds.push(breed);
-    await writeData(data);
+    let newBreed = new Breeds(breed);
+    await newBreed.save();
     return breed;
 }
 
 async function deleteCat(id) {
-    let data = await readData();
-    let cat = data.cats.find(el => el.id == id);
-    let index = data.cats.indexOf(cat);
-    data.cats.splice(index, 1);
-    await writeData(data);
-    return cat;
+    await Cats.findByIdAndDelete(id);
 }
 
 async function editCat(id, catData) {
-    let data = await readData();
-    let cat = data.cats.find(el => el.id == id);
-    if (catData.imgURL) {
-        cat.imgURL = catData.imgURL;
-    }
-    cat.breed = catData.breed;
-    cat.description = catData.description;
-    cat.name = catData.name;
-    await writeData(data);
-    return cat;
+    await Cats.findByIdAndUpdate(id, { $set: catData });
 }
 
-async function searching(value) {
-    let data = await readData();
+function searching(value) {
     let curValue = value.toLowerCase();
-    let results = data.cats.filter(el => el.breed.toLowerCase().includes(curValue));
+    let results = Cats.find({ breed: curValue });
     return results;
 }
 
