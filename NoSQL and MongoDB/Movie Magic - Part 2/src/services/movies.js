@@ -34,9 +34,19 @@ function searching({ title, genre, year }) {
     return Movies.find(query);
 }
 
+async function checkMovieId(id) {
+    let data = await Movies.find();
+    let isValid = data.find(el => el._id == id);
+    if (isValid) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     getMovies,
     getMovieById,
     createMovie,
-    searching
+    searching,
+    checkMovieId
 }

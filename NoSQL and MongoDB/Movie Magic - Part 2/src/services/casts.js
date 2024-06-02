@@ -21,9 +21,19 @@ async function attach(movieId, castData) {
     return await Movies.findByIdAndUpdate(movieId, { $push: { casts: castData } });
 }
 
+async function checkCastId(id) {
+    let data = await Casts.find();
+    let isValid = data.find(el => el._id == id);
+    if (isValid) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     getAllCasts,
     createCast,
     getCastById,
-    attach
+    attach,
+    checkCastId
 }
