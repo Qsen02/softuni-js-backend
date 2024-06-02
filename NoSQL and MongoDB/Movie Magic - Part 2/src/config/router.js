@@ -5,6 +5,7 @@ const { showCreateForm, onCreate } = require("../controllers/create");
 const { showSerchMenu, onSearch } = require("../controllers/search");
 const { showCastForm, onCreateCast } = require("../controllers/createCast");
 const { showAttachForm, onAttach } = require("../controllers/attach");
+const { onDelete, showDeleteForm, onRefuse } = require("../controllers/deleteMovie");
 
 let router = Router();
 
@@ -19,6 +20,9 @@ router.get("/cast/create", showCastForm);
 router.post("/cast/create", onCreateCast);
 router.get("/movies/:id/attach", showAttachForm);
 router.post("/movies/:id/attach", onAttach);
+router.get("/movies/:id/delete", showDeleteForm);
+router.get("/movies/:id/delete/yes", onDelete);
+router.get("/movies/:id/delete/no", onRefuse);
 router.get("*", (req, res) => {
     res.render("error");
 })

@@ -10,10 +10,10 @@ function getMovieById(id) {
     return data;
 }
 
-function createMovie(newMovie) {
+async function createMovie(newMovie) {
     const movie = new Movies(newMovie);
-    movie.save();
-    return movie.lean();
+    await movie.save();
+    return movie;
 }
 
 function searching({ title, genre, year }) {
@@ -43,10 +43,15 @@ async function checkMovieId(id) {
     return false;
 }
 
+async function deleteMovie(id) {
+    await Movies.findByIdAndDelete(id);
+}
+
 module.exports = {
     getMovies,
     getMovieById,
     createMovie,
     searching,
-    checkMovieId
+    checkMovieId,
+    deleteMovie
 }
