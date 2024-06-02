@@ -7,10 +7,11 @@ async function showCreateForm(req, res) {
 
 async function onCreateCat(req, res) {
     const fields = req.body;
+    console.log(fields);
     let errors = {
         name: !fields.name,
         description: !fields.description,
-        bree: !fields.breed
+        breed: !fields.breed
     }
     let name = fields.name;
     let description = fields.description;
@@ -24,6 +25,7 @@ async function onCreateCat(req, res) {
     }
 
     if (Object.values(errors).includes(true)) {
+        console.log(Object.values(errors))
         let breeds = await getAllBreeds().lean();
         res.render("addCat", { cats: req.body, errors, breeds });
         return;

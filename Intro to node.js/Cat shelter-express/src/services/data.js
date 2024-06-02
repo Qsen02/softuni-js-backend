@@ -42,6 +42,15 @@ function searching(value) {
     return results;
 }
 
+async function checkCatId(id) {
+    let data = await Cats.find();
+    let isValid = data.find(el => el._id == id);
+    if (isValid) {
+        return true;
+    }
+    return false;
+}
+
 module.exports = {
     getAllBreeds,
     getAllCats,
@@ -51,4 +60,5 @@ module.exports = {
     deleteCat,
     editCat,
     searching,
+    checkCatId
 }

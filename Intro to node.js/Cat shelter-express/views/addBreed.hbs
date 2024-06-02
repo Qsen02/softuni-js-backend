@@ -1,6 +1,11 @@
+{{#if error}}
+<div class="notification">
+    <p>Breed field must be filled!</p>
+</div>
+{{/if}}
 <form action="/cats/add-breed" method="post" class="cat-form">
     <h2>Add Cat Breed</h2>
-    <label for="breed-name">Breed Name</label>
-    <input name="breedName" type="text" id="breed-name">
+    <label {{#if error}}class="errorLabel"{{/if}} for="breed-name">Breed Name</label>
+    <input {{#if error}}class="errorField"{{/if}} name="breedName" type="text" id="breed-name">
     <button type="submit">Add Breed</button>
 </form>

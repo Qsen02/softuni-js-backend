@@ -1,13 +1,14 @@
-const { getCatById, getAllBreeds, editCat } = require("../services/data");
+const { getCatById, getAllBreeds, editCat, checkCatId } = require("../services/data");
 const { delImg } = require("../services/images");
 
 async function showEditForm(req, res) {
     let id = req.params.id;
-    let cat = await getCatById(id).lean();
-    if (!cat) {
+    let isValid = await checkCatId(id);
+    if (!isValid) {
         res.render("404");
         return;
     }
+    let cat = await getCatById(id).lean();
     let breeds = await getAllBreeds().lean();
     let breed = breeds.find(el => el.breedName == cat.breed);
     let index = breeds.indexOf(breed);
@@ -17,12 +18,17 @@ async function showEditForm(req, res) {
 
 async function onEdit(req, res) {
     let id = req.params.id;
+    let isValid = await checkCatId(id);
+    if (!isValid) {
+        res.render("404");
+        return;
+    }
     let cat = await getCatById(id).lean();
     let data = req.body;
     let errors = {
         name: !data.name,
         description: !data.description,
-        bree: !data.breed
+        breed: !data.breed
     }
     let imgURLArr = cat.imgURL.split("\\");
     let imgToDel = imgURLArr[imgURLArr.length - 1];

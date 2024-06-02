@@ -1,18 +1,24 @@
-const { getCatById, deleteCat } = require("../services/data");
+const { getCatById, deleteCat, checkCatId } = require("../services/data");
 const { delImg } = require("../services/images");
 
 async function showDeleteFrom(req, res) {
     let id = req.params.id;
-    let cat = await getCatById(id).lean();
-    if (!cat) {
+    let isValid = await checkCatId(id);
+    if (!isValid) {
         res.render("404");
         return;
     }
+    let cat = await getCatById(id).lean();
     res.render("deleteCat", { cat });
 }
 
 async function onDelete(req, res) {
     let id = req.params.id;
+    let isValid = await checkCatId(id);
+    if (!isValid) {
+        res.render("404");
+        return;
+    }
     let cat = await getCatById(id).lean();
     let imgURLArr = cat.imgURL.split("\\");
     let imgName = imgURLArr[imgURLArr.length - 1];

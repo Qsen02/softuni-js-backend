@@ -59,7 +59,7 @@ form {
     margin-top: 1rem;
 }
 
-input[type=text],
+input[type="text"],
 input[type="file"],
 input[type="number"],
 textarea,
@@ -256,6 +256,10 @@ body>form>label:nth-child(3) {
     bottom: -20px;
 }
 
-.errorFields {
+.errorLabel {
     color: red;
+}
+
+.errorField {
+    border-bottom: 1px red solid;
 }
