@@ -10,8 +10,17 @@ function getMovieById(id) {
     return data;
 }
 
-async function createMovie(newMovie) {
-    const movie = new Movies(newMovie);
+async function createMovie(newMovie, user) {
+    const movie = new Movies({
+        title: newMovie.title,
+        genre: newMovie.genre,
+        description: newMovie.description,
+        director: newMovie.director,
+        year: newMovie.year,
+        creatorId: user._id,
+        imageURL: newMovie.imageURL,
+        rating: newMovie.rating
+    });
     await movie.save();
     return movie;
 }

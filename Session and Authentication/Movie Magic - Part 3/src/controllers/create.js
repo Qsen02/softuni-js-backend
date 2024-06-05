@@ -1,4 +1,5 @@
 const { createMovie } = require("../services/movies");
+const { getUserData } = require("../services/users");
 
 function showCreateForm(req, res) {
     let user = req.session.user;
@@ -7,6 +8,7 @@ function showCreateForm(req, res) {
 
 async function onCreate(req, res) {
     let user = req.session.user;
+    let userData = await getUserData(user.email);
     let data = req.body;
     let errors = {
         title: !data.title,
@@ -21,7 +23,7 @@ async function onCreate(req, res) {
         res.render("createMovie", { movie: req.body, errors, user });
         return;
     }
-    await createMovie(data);
+    await createMovie(data, userData);
     res.redirect("/");
 }
 

@@ -35,7 +35,7 @@ async function onRefuse(req, res) {
         res.end();
         return;
     }
-    res.redirect("/");
+    res.redirect(`/details/${id}`);
 }
 
 module.exports = {

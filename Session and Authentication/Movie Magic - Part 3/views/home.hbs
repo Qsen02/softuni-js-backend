@@ -13,7 +13,9 @@
                 <h2>Genre: {{genre}}</h2>
                 <p>Description: {{description}}</p>
                 <a href="/details/{{_id}}" class="details">Details</a>
+                {{#if userDataId}}
                 <a href="/movies/{{_id}}/attach" class="details">Attach</a>
+                {{/if}}
             </div>
         </div>
         {{/each}}
