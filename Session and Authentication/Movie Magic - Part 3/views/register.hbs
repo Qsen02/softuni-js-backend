@@ -1,0 +1,43 @@
+{{#if errors.isCorrectPass}}
+<div class="error-container">
+    <p>Password must be at least 6 symbols!</p>
+</div>
+{{/if}}
+{{#if errors.isMatch}}
+<div class="error-container">
+    <p>Password must match</p>
+</div>
+{{/if}}
+{{#if errors.isEmpty}}
+<div class="error-container">
+    <p>All fields required!</p>
+</div>
+{{/if}}
+<section id="register-page">
+    <div class="registerSection">
+        <div class="info-register">
+            <h2>"I hope you're pleased with yourselves. We could all have been killed — or worse, expelled. Now if you
+                don't mind, I'm going to bed."</h2>
+        </div>
+        <form  method="post" class="registerForm">
+            <h2>Register</h2>
+            <ul class="noBullet">
+                <li>
+                    <label for="email">Email:</label>
+                    <input type="text" class="inputFields" id="email" name="email" value="{{fields.email}}" />
+                </li>
+                <li>
+                    <label for="password">Password:</label>
+                    <input type="password" class="inputFields" id="password" name="password" value="{{fields.password}}" />
+                </li>
+                <li>
+                    <label for="repeat-password">Repeat-Password:</label>
+                    <input type="password" class="inputFields" id="repeat-password" name="repass" value="{{fields.repass}}"/>
+                </li>
+                <li id="center-btn">
+                    <button type="submit" id="join-btn">Register</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</section>
