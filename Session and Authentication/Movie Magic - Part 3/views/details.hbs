@@ -21,8 +21,8 @@
             </div>
             {{#if isOwner}}
             <div class="social-btn">
-                <button class="edit-btn"><a href="/movies/{{movie._id}}/edit">Edit</a></button>
-                <button class="del-btn"><a href="/movies/{{movie._id}}/delete">Delete</a></button>
+                <a id="edit-button" href="/movies/{{movie._id}}/edit">Edit</a>
+                <a id="delete-button" href="/movies/{{movie._id}}/delete">Delete</a>
             </div>
             {{/if}}
         </div>

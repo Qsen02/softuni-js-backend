@@ -8,27 +8,16 @@ async function showRegisterForm(req, res) {
 async function onRegister(req, res) {
     let user = req.session.user;
     let fields = req.body;
-    let errors = {
-        isEmpty: false,
-        isCorrectPass: false,
-        isMatch: false
-    }
-    if (!fields.email || !fields.password || !fields.repass) {
-        errors.isEmpty = true;
-        res.render("register", { errors, fields, user });
+    let email = fields.email;
+    let password = fields.password
+    let repass = fields.repass;
+    try {
+        await register(email, password, repass);
+    } catch (err) {
+        let fields = req.body;
+        res.render("register", { error: err.message, user, fields })
         return;
     }
-    if (fields.password.length < 6) {
-        errors.isCorrectPass = true;
-        res.render("register", { errors, fields, user });
-        return;
-    }
-    if (fields.password != fields.repass) {
-        errors.isMatch = true;
-        res.render("register", { errors, fields, user });
-        return;
-    }
-    await register(fields.email, fields.password);
     req.session.user = {
         ["email"]: fields.email,
         ["password"]: fields.password

@@ -1,16 +1,6 @@
-{{#if errors.isCorrectPass}}
+{{#if error}}
 <div class="error-container">
-    <p>Password must be at least 6 symbols!</p>
-</div>
-{{/if}}
-{{#if errors.isMatch}}
-<div class="error-container">
-    <p>Password must match!</p>
-</div>
-{{/if}}
-{{#if errors.isEmpty}}
-<div class="error-container">
-    <p>All fields required!</p>
+    <p>{{error}}</p>
 </div>
 {{/if}}
 <section id="register-page">
