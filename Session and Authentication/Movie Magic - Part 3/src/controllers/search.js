@@ -1,4 +1,5 @@
 const { getMovies, searching } = require("../services/movies");
+const { getUserData } = require("../services/users");
 
 async function showSerchMenu(req, res) {
     let user = req.session.user;
@@ -6,6 +7,17 @@ async function showSerchMenu(req, res) {
     let hasMovies = true;
     if (movies.length == 0) {
         hasMovies = false;
+    }
+    if (user) {
+        let userData = await getUserData(user.email).lean();
+        let userDataId = userData._id.toString();
+        for (let movie of movies) {
+            if (userDataId == movie.creatorId) {
+                movie.userDataId = true;
+            } else {
+                movie.userDataId = false;
+            }
+        }
     }
     res.render("search", { movies, hasMovies, user })
 }
@@ -31,6 +43,17 @@ async function onSearch(req, res) {
     let hasMovies = true;
     if (movies.length == 0) {
         hasMovies = false;
+    }
+    if (user) {
+        let userData = await getUserData(user.email).lean();
+        let userDataId = userData._id.toString();
+        for (let movie of movies) {
+            if (userDataId == movie.creatorId) {
+                movie.userDataId = true;
+            } else {
+                movie.userDataId = false;
+            }
+        }
     }
     res.render("search", { movies, hasMovies, user })
 }
