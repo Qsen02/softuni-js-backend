@@ -8,6 +8,7 @@ const { showAttachForm, onAttach } = require("../controllers/attach");
 const { onDelete, showDeleteForm, onRefuse } = require("../controllers/deleteMovie");
 const { showRegisterForm, onRegister } = require("../controllers/register");
 const { showLoginForm, onLogin } = require("../controllers/login");
+const { showEditForm, onEdit } = require("../controllers/edit");
 
 let router = Router();
 
@@ -27,6 +28,8 @@ router.get("/movies/:id/delete/yes", onDelete);
 router.get("/movies/:id/delete/no", onRefuse);
 router.get("/register", showRegisterForm);
 router.post("/register", onRegister);
+router.get("/movies/:id/edit", showEditForm);
+router.post("/movies/:id/edit", onEdit);
 router.get("/logout", (req, res) => {
     delete req.session.user;
     res.redirect("/");

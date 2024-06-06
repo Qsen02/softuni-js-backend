@@ -6,9 +6,9 @@ async function showHome(req, res) {
     let movies = await getMovies().lean();
     if (user) {
         let userData = await getUserData(user.email).lean();
-        let userDataId = userData.toString();
+        let userDataId = userData._id.toString();
         for (let movie of movies) {
-            if (userDataId == movie._id) {
+            if (userDataId == movie.creatorId) {
                 movie.userDataId = true;
             } else {
                 movie.userDataId = false;

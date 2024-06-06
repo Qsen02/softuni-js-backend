@@ -56,11 +56,16 @@ async function deleteMovie(id) {
     await Movies.findByIdAndDelete(id);
 }
 
+async function editMovie(id, data) {
+    await Movies.findByIdAndUpdate(id, { $set: data });
+}
+
 module.exports = {
     getMovies,
     getMovieById,
     createMovie,
     searching,
     checkMovieId,
-    deleteMovie
+    deleteMovie,
+    editMovie
 }
