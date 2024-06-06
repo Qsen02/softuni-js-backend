@@ -10,8 +10,11 @@ async function register(email, password) {
 
 async function login(email, password) {
     let user = await Users.findOne({ email }).lean();
+    if (!user) {
+        return false;
+    }
     let isValidPass = await bcrypt.compare(password, user.password);
-    if (!user || !isValidPass) {
+    if (!isValidPass) {
         return false;
     }
     return user;

@@ -15,14 +15,16 @@ async function onRegister(req, res) {
     }
     if (!fields.email || !fields.password || !fields.repass) {
         errors.isEmpty = true;
+        res.render("register", { errors, fields, user });
+        return;
     }
     if (fields.password.length < 6) {
         errors.isCorrectPass = true;
+        res.render("register", { errors, fields, user });
+        return;
     }
     if (fields.password != fields.repass) {
         errors.isMatch = true;
-    }
-    if (Object.values(errors).includes(true)) {
         res.render("register", { errors, fields, user });
         return;
     }
