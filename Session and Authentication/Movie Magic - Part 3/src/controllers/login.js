@@ -1,28 +1,24 @@
 const { login } = require("../services/users");
+const { setToken } = require("../services/token");
 
 async function showLoginForm(req, res) {
-    let user = req.session.user;
-    res.render("login", { user });
+    res.render("login");
 }
 
 async function onLogin(req, res) {
-    let user = req.session.user;
     let fields = req.body;
-    let empty = false;
-    let isValidUser = false;
-    if (!fields.email || !fields.password) {
-        empty = true;
-        res.render("login", { user, empty });
-        return
-    }
-    let curUser = await login(fields.email, fields.password, fields);
-    if (!curUser) {
-        isValidUser = true;
-        res.render("login", { user, isValidUser, fields });
+    try {
+        if (!fields.email || !fields.password) {
+            throw new Error("All fields required!");
+        }
+        let user = await login(fields.email, fields.password);
+        let token = setToken(user);
+        res.cookie("token", token, { httpOnly: true });
+        res.redirect("/");
+    } catch (err) {
+        res.render("login", { error: err.message, fields });
         return;
     }
-    req.session.user = curUser;
-    res.redirect("/");
 }
 
 module.exports = {

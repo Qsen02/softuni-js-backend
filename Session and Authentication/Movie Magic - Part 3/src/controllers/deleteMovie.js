@@ -1,7 +1,6 @@
 const { checkMovieId, deleteMovie } = require("../services/movies");
 
 async function showDeleteForm(req, res) {
-    let user = req.session.user;
     let id = req.params.id;
     let isValid = await checkMovieId(id);
     if (!isValid) {
@@ -10,7 +9,7 @@ async function showDeleteForm(req, res) {
         res.end();
         return;
     }
-    res.render("delete", { id, user })
+    res.render("delete", { id })
 }
 
 async function onDelete(req, res) {

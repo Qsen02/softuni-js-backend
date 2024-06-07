@@ -1,32 +1,23 @@
 const { getMovies, searching } = require("../services/movies");
-const { getUserData } = require("../services/users");
 
 async function showSerchMenu(req, res) {
-    let user = req.session.user;
     let movies = await getMovies().lean();
+    let user = req.user;
     let hasMovies = true;
     if (movies.length == 0) {
         hasMovies = false;
     }
-    if (user) {
-        let userData = await getUserData(user.email).lean();
-        let userDataId = userData._id.toString();
-        for (let movie of movies) {
-            if (userDataId == movie.creatorId) {
-                movie.userDataId = true;
-            } else {
-                movie.userDataId = false;
-            }
-        }
+    for (let movie of movies) {
+        movie.userDataId = user && movie.creatorId == user._id;
     }
-    res.render("search", { movies, hasMovies, user })
+    res.render("search", { movies, hasMovies })
 }
 
 async function onSearch(req, res) {
-    let user = req.session.user;
     let valueArr = req.url.split("?")[1];
     let values = valueArr.split("&");
     let valuesObj = {};
+    let user = req.user;
     for (let value of values) {
         let curValue = value.split("=");
         valuesObj[curValue[0]] = curValue[1];
@@ -44,18 +35,10 @@ async function onSearch(req, res) {
     if (movies.length == 0) {
         hasMovies = false;
     }
-    if (user) {
-        let userData = await getUserData(user.email).lean();
-        let userDataId = userData._id.toString();
-        for (let movie of movies) {
-            if (userDataId == movie.creatorId) {
-                movie.userDataId = true;
-            } else {
-                movie.userDataId = false;
-            }
-        }
+    for (let movie of movies) {
+        movie.userDataId = user && movie.creatorId == user._id;
     }
-    res.render("search", { movies, hasMovies, user })
+    res.render("search", { movies, hasMovies })
 }
 
 module.exports = {

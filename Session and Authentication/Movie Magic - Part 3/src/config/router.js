@@ -31,7 +31,7 @@ router.post("/register", onRegister);
 router.get("/movies/:id/edit", showEditForm);
 router.post("/movies/:id/edit", onEdit);
 router.get("/logout", (req, res) => {
-    delete req.session.user;
+    res.clearCookie("token");
     res.redirect("/");
 });
 router.get("/login", showLoginForm);

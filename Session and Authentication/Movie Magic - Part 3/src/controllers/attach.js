@@ -2,11 +2,10 @@ const { getAllCasts, getCastById, attach, checkCastId } = require("../services/c
 const { getMovieById, checkMovieId } = require("../services/movies");
 
 async function showAttachForm(req, res) {
-    let user = req.session.user;
     let id = req.params.id;
     let isValid = await checkMovieId(id);
     if (!isValid) {
-        res.render("error", { user });
+        res.render("error");
         return;
     }
     let movieData = await getMovieById(id).lean();
@@ -14,11 +13,10 @@ async function showAttachForm(req, res) {
     let casts = [];
     movieData.casts.forEach(el => casts.push(el._id.toString()));
     let data = allCasts.filter(el => !casts.includes(el._id.toString()));
-    res.render("attach", { movieData, data, user });
+    res.render("attach", { movieData, data });
 }
 
 async function onAttach(req, res) {
-    let user = req.session.user;
     let castId = req.body.cast;
     let id = req.params.id;
     let isValidCast = await checkCastId(castId);
@@ -28,7 +26,7 @@ async function onAttach(req, res) {
         error = true;
         let movieData = await getMovieById(id).lean();
         let data = await getAllCasts().lean();
-        res.render("attach", { movieData, data, error, user });
+        res.render("attach", { movieData, data, error });
         return;
     }
     if (!isValidCast || !isValidMovie) {

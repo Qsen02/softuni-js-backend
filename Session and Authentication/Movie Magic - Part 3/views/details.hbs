@@ -19,7 +19,7 @@
 
                 <p class="disc">Description: {{movie.description}}</p>
             </div>
-            {{#if isOwner}}
+            {{#if movie.userDataId}}
             <div class="social-btn">
                 <a id="edit-button" href="/movies/{{movie._id}}/edit">Edit</a>
                 <a id="delete-button" href="/movies/{{movie._id}}/delete">Delete</a>

@@ -2,13 +2,11 @@ const { createMovie } = require("../services/movies");
 const { getUserData } = require("../services/users");
 
 function showCreateForm(req, res) {
-    let user = req.session.user;
-    res.render("createMovie", { user });
+    res.render("createMovie");
 }
 
 async function onCreate(req, res) {
-    let user = req.session.user;
-    let userData = await getUserData(user.email);
+    let user = req.user;
     let data = req.body;
     let errors = {
         title: !data.title,
@@ -20,10 +18,10 @@ async function onCreate(req, res) {
         imageURL: !data.imageURL
     }
     if (Object.values(errors).includes(true)) {
-        res.render("createMovie", { movie: req.body, errors, user });
+        res.render("createMovie", { movie: req.body, errors });
         return;
     }
-    await createMovie(data, userData);
+    await createMovie(data, user);
     res.redirect("/");
 }
 

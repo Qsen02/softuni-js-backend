@@ -1,11 +1,6 @@
-{{#if isValidUser}}
+{{#if error}}
 <div class="error-container">
-    <p>Password or email dont match!</p>
-</div>
-{{/if}}
-{{#if empty}}
-<div class="error-container">
-    <p>All fields required!</p>
+    <p>{{error}}</p>
 </div>
 {{/if}}
 <section id="login-page">

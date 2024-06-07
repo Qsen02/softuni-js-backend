@@ -1,17 +1,8 @@
 let bcrypt = require("bcrypt");
 const { Users } = require("../models/users");
 
-async function register(email, password, repass) {
+async function register(email, password) {
     let isUser = await Users.findOne({ email }).lean();
-    if (!email || !password) {
-        throw new Error("All fields required!");
-    }
-    if (password.length < 6) {
-        throw new Error("Password must be at least 6 symbols!");
-    }
-    if (password != repass) {
-        throw new Error("Password must match!");
-    }
     if (isUser) {
         throw new Error("This user exist already!");
     }
@@ -24,19 +15,11 @@ async function register(email, password, repass) {
 async function login(email, password) {
     let user = await Users.findOne({ email }).lean();
     if (!user) {
-        return false;
+        throw new Error("Email or password dont match!");
     }
     let isValidPass = await bcrypt.compare(password, user.password);
     if (!isValidPass) {
-        return false;
-    }
-    return user;
-}
-
-function getUserData(email) {
-    let user = Users.findOne({ email });
-    if (!user) {
-        return false;
+        throw new Error("Email or password dont match!");
     }
     return user;
 }
@@ -44,5 +27,4 @@ function getUserData(email) {
 module.exports = {
     register,
     login,
-    getUserData
 }

@@ -3,14 +3,12 @@ const { router } = require("./config/router");
 const { hbsConfig } = require("./config/handelbars");
 const { expressConfig } = require("./config/express");
 const { main } = require("./config/mongoose");
-const { sessionConfig } = require("./config/session");
 
 async function start() {
     await main();
     let app = express();
     hbsConfig(app);
     expressConfig(app);
-    sessionConfig(app);
 
     app.use(router);
     app.listen(3000, () => {

@@ -1,10 +1,12 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const { session } = require("../middlewears/session");
 
 const secret = "super secret";
 
 function expressConfig(app) {
     app.use(cookieParser(secret));
+    app.use(session());
     app.use("/static", express.static("static"));
     app.use(express.urlencoded({ extended: true }));
 }

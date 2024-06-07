@@ -1,30 +1,22 @@
 const { getMovieById, checkMovieId } = require("../services/movies");
-const { getUserData } = require("../services/users");
 
-async function showDetails(req, res) {
-    let user = req.session.user;
-    let isOwner = false;
+async function showDetails(req, res) {;
     let id = req.params.id;
     let isValid = await checkMovieId(id);
     let isCasts = true;
+    let user = req.user;
     if (!isValid) {
-        res.render("error", { user });
+        res.render("error");
         return;
     }
     let movie = await getMovieById(id).lean();
-    if (user) {
-        let userData = await getUserData(user.email).lean();
-        let id = userData._id;
-        if (id.toString() == movie.creatorId) {
-            isOwner = true;
-        }
-    }
+    movie.userDataId = user && movie.creatorId == user._id;
     if (movie.casts.length == 0) {
         isCasts = false;
     }
     let count = movie.rating;
     movie.rating = "&#9733;".repeat(count);
-    res.render("details", { movie, user, isOwner, isCasts });
+    res.render("details", { movie, isCasts });
 }
 
 module.exports = {

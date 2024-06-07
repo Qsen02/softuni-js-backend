@@ -1,12 +1,10 @@
 const { createCast } = require("../services/casts");
 
 function showCastForm(req, res) {
-    let user = req.session.user;
-    res.render("createCast", { user });
+    res.render("createCast");
 }
 
 async function onCreateCast(req, res) {
-    let user = req.session.user;
     let data = req.body;
     let errors = {
         name: !data.name,
@@ -16,7 +14,7 @@ async function onCreateCast(req, res) {
         nameInMovie: !data.nameInMovie,
     }
     if (Object.values(errors).includes(true)) {
-        res.render("createCast", { errors, data, user });
+        res.render("createCast", { errors, data });
         return;
     }
     await createCast(data);
