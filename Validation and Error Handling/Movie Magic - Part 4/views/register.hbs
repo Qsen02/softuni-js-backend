@@ -1,0 +1,35 @@
+{{#if errors}}
+<div class="error-container">
+    {{#each errors}}
+    <p>{{this}}</p>
+    {{/each}}
+</div>
+{{/if}}
+<section id="register-page">
+    <div class="registerSection">
+        <div class="info-register">
+            <h2>"I hope you're pleased with yourselves. We could all have been killed — or worse, expelled. Now if you
+                don't mind, I'm going to bed."</h2>
+        </div>
+        <form method="post" class="registerForm">
+            <h2>Register</h2>
+            <ul class="noBullet">
+                <li {{#if errors.email}}class="error" {{/if}}>
+                    <label for="email">Email:</label>
+                    <input type="text" class="inputFields" id="email" name="email" value="{{fields.email}}" />
+                </li>
+                <li {{#if errors.password}}class="error" {{/if}}>
+                    <label for="password">Password:</label>
+                    <input type="password" class="inputFields" id="password" name="password" />
+                </li>
+                <li {{#if errors.repass}}class="error" {{/if}}>
+                    <label for="repeat-password">Repeat-Password:</label>
+                    <input type="password" class="inputFields" id="repeat-password" name="repass" />
+                </li>
+                <li id="center-btn">
+                    <button type="submit" id="join-btn">Register</button>
+                </li>
+            </ul>
+        </form>
+    </div>
+</section>

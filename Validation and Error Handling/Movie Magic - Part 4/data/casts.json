@@ -1,0 +1,22 @@
+[{
+        "name": "Ivan Ivanov",
+        "age": 35,
+        "born": "Sofia, Bulgaria",
+        "nameInMovie": "Alexander",
+        "castImg": "/static/img/OIG4.jfif"
+    },
+    {
+        "name": "Maria Petrova",
+        "age": 28,
+        "born": "Plovdiv, Bulgaria",
+        "nameInMovie": "Elena",
+        "castImg": "/static/img/OIG4.jfif"
+    },
+    {
+        "name": "Georgi Georgiev",
+        "age": 40,
+        "born": "Varna, Bulgaria",
+        "nameInMovie": "Ivan",
+        "castImg": "/static/img/OIG4.jfif"
+    }
+]
