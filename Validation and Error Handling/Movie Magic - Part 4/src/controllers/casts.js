@@ -2,6 +2,8 @@ const { Router } = require("express");
 const { getAllCasts, getCastById, attach, checkCastId, createCast } = require("../services/casts");
 const { getMovieById, checkMovieId } = require("../services/movies");
 const { isUser } = require("../middlewears/guards");
+const { body, validationResult } = require("express-validator");
+const { parseError } = require("../util");
 
 let castRouter = Router();
 
@@ -9,22 +11,28 @@ castRouter.get("/cast/create", isUser(), (req, res) => {
     res.render("createCast");
 });
 
-castRouter.post("/cast/create", isUser(), async(req, res) => {
-    let data = req.body;
-    let errors = {
-        name: !data.name,
-        age: !data.age,
-        castImg: !data.castImg,
-        born: !data.born,
-        nameInMovie: !data.nameInMovie,
-    }
-    if (Object.values(errors).includes(true)) {
-        res.render("createCast", { errors, data });
-        return;
-    }
-    await createCast(data);
-    res.redirect("/");
-});
+castRouter.post("/cast/create",
+    body("name").trim().isAlphanumeric().isLength({ min: 5 }).withMessage("Name must be at least 5 symbols with letters and digits only!"),
+    body("age").trim().isInt({ min: 1, max: 120 }).withMessage("Age must be between 1 and 120!"),
+    body("born").trim().isAlphanumeric().isLength({ min: 10 }).withMessage("Born place must be at least 10 symbols with letters and digits only!"),
+    body("nameInMovie").trim().isAlphanumeric().isLength({ min: 5 }).withMessage("Name in movie must be at least 5 symbols with letters and digits only!"),
+    body("castImg").trim().isURL().withMessage("Cast image must be valid URL!"),
+    isUser(),
+    async(req, res) => {
+        let data = req.body;
+        try {
+            let result = validationResult(req);
+            if (result.errors.length) {
+                throw result.errors;
+            }
+            await createCast(data);
+            res.redirect("/");
+        } catch (err) {
+            res.render("createCast", { errors: parseError(err).errors, data });
+            return;
+        }
+
+    });
 
 castRouter.get("/movies/:id/attach", isUser(), async(req, res) => {
     let id = req.params.id;
