@@ -1,0 +1,28 @@
+[{
+        "name": "Quartz",
+        "image": "./static/images/quartz.jpg",
+        "category": "Silicate mineral",
+        "formula": "SiO2",
+        "location": "Found worldwide",
+        "description": "One of the most common minerals on Earth's surface",
+        "color": "Colorless, white, or can vary due to impurities"
+    },
+    {
+        "name": "Beryl",
+        "image": "./static/images/beryl.webp",
+        "category": "Cyclosilicate",
+        "formula": "Be3Al2Si6O18",
+        "location": "Commonly found in granitic pegmatites",
+        "description": "Forms hexagonal crystals and can be transparent to opaque",
+        "color": "Green, blue, yellow, colorless, and others"
+    },
+    {
+        "name": "Amethyst",
+        "image": "./static/images/amethyst.jpg",
+        "category": "Silicate mineral",
+        "formula": "SiO2",
+        "location": "Typically found in geodes in volcanic rocks",
+        "description": "A variety of quartz known for its purple color",
+        "color": "Purple, ranging from light to dark"
+    }
+]
