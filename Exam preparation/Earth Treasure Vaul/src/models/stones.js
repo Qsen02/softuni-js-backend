@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { type } = require("os");
 
 let stonesSchema = new mongoose.Schema({
     name: {
@@ -25,19 +24,19 @@ let stonesSchema = new mongoose.Schema({
     location: {
         type: String,
         require: true,
-        minLength: [5, "Location must be between 5 and 15 letters logn!"],
-        maxLength: [15, "Location must be between 5 and 15 letters logn!"]
+        minLength: [5, "Location must be between 5 and 15 letters long!"],
+        maxLength: [15, "Location must be between 5 and 15 letters long!"]
     },
     formula: {
         type: String,
         require: true,
-        minLength: [3, "Formula must be between 3 and 30 letters logn!"],
-        maxLength: [30, "Formula must be between 3 and 30 letters logn!"]
+        minLength: [3, "Formula must be between 3 and 30 letters long!"],
+        maxLength: [30, "Formula must be between 3 and 30 letters long!"]
     },
     description: {
         type: String,
         require: true,
-        minLength: [10, "Description must be at least 10 letters logn!"],
+        minLength: [10, "Description must be at least 10 letters long!"],
     },
     likedList: {
         type: [mongoose.SchemaTypes.ObjectId],

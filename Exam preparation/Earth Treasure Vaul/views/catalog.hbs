@@ -1,0 +1,14 @@
+<main class="dashboard">
+    <section id="dashboard">
+        <h2>Minerals and Gems</h2>
+        <ul class="card-wrapper">
+            {{#each stones}}
+            {{> catalogStones}}
+            {{else}}
+            <div id="no-post">
+                <h2>There are no gems and minerals! </h2>
+            </div>
+            {{/each}}
+        </ul>
+    </section>
+</main>

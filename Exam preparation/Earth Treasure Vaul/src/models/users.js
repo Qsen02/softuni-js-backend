@@ -10,6 +10,11 @@ let userSchema = new mongoose.Schema({
         type: String,
         require: true
     }
+}, {
+    collation: {
+        locale: "en",
+        strength: 2,
+    }
 });
 
 let Users = mongoose.model("Users", userSchema);

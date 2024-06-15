@@ -1,6 +1,6 @@
 let express = require("express");
 let cookieParser = require("cookie-parser");
-const { session } = require("../midllewears/session");
+const { session } = require("../middlewares/session");
 
 let secret = "super secret cookie";
 

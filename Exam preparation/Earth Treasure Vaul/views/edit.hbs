@@ -1,0 +1,17 @@
+<main class="edit">
+    <section id="edit">
+        <div class="form">
+            <h2>Edit item</h2>
+            <form class="edit-form" method="post">
+                <input type="text" name="name" id="name" placeholder="Name" {{#if stone.name}}value="{{stone.name}}"{{/if}} />
+                <input type="text" name="category" id="category" placeholder="Category" {{#if stone.category}}value="{{stone.category}}"{{/if}} />
+                <input type="text" name="color" id="color" placeholder="Color" {{#if stone.color}}value="{{stone.color}}"{{/if}} />
+                <input type="text" name="image" id="stone-img" placeholder="Image" {{#if stone.image}}value="{{stone.image}}"{{/if}} />
+                <input type="text" name="location" id="location" placeholder="Location" {{#if stone.location}}value="{{stone.location}}"{{/if}} />
+                <input type="text" nameformula id="formula" placeholder="Formula" {{#if stone.formula}}value="{{stone.formula}}"{{/if}} />
+                <textarea id="description" placeholder="Description..." name="description">{{#if stone.description}}{{stone.description}}{{/if}}</textarea>
+                <button type="submit">Edit</button>
+            </form>
+        </div>
+    </section>
+</main>

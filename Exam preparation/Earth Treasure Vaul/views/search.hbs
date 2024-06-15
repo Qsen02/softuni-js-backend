@@ -1,0 +1,21 @@
+<main class="search">
+    <section id="search">
+        <h2>Search by Name</h2>
+
+        <form class="search-wrapper cf" method="GET" action="/search">
+            <input id="#search-input" type="text" name="name" placeholder="Search here..." required />
+            <button type="submit">Search</button>
+        </form>
+        <div id="search-container">
+            {{#each stones}}
+            <ul class="card-wrapper">
+                {{> catalogStones}}
+            </ul>
+            {{else}}
+            <div id="no-post">
+                <h2>There are no results found.</h2>
+            </div>
+            {{/each}}
+         </div>
+    </section>
+</main>
