@@ -43,7 +43,6 @@ userRouter.get("/login", isGuest(), (req, res) => {
 
 userRouter.post("/login", isGuest(), async(req, res) => {
     let fields = req.body;
-    console.log(fields.password);
     try {
         let results = validationResult(req);
         if (results.errors.length) {

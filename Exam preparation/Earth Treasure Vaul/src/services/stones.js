@@ -1,5 +1,4 @@
 const { Stones } = require("../models/stones");
-const { Users } = require("../models/users");
 
 function getAllStones() {
     let stones = Stones.find();
@@ -16,18 +15,9 @@ function getLatestStones() {
     return latestStones
 }
 
-async function createStone(data, userId) {
-    let user = await Users.findById(userId).lean();
-    let newStone = new Stones({
-        name: data.name,
-        category: data.category,
-        location: data.location,
-        formula: data.formula,
-        description: data.description,
-        image: data.image,
-        ownerId: user._id,
-        color: data.color
-    })
+async function createStone(data, user) {
+    let newStone = new Stones(data);
+    newStone.ownerId = user._id;
     await newStone.save();
     return newStone;
 }
@@ -36,18 +26,9 @@ async function deleteStone(id) {
     await Stones.findByIdAndDelete(id);
 }
 
-async function editStone(id, data, userId) {
-    let user = await Users.findById(userId).lean();
-    let newStone = new Stones({
-        name: data.name,
-        category: data.category,
-        location: data.location,
-        formula: data.formula,
-        description: data.description,
-        image: data.image,
-        ownerId: user._id,
-        color: data.color
-    })
+async function editStone(id, data, user) {
+    let newStone = new Stones(data);
+    newStone.ownerId = user._id;
     await Stones.findByIdAndDelete(id);
     await newStone.save();
     return newStone;

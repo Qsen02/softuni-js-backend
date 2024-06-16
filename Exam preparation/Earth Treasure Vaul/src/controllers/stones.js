@@ -10,10 +10,10 @@ stonesRouter.get("/create", isUser(), (req, res) => {
 })
 
 stonesRouter.post("/create", isUser(), async(req, res) => {
-    let userId = req.user._id;
+    let user = req.user;
     let fields = req.body;
     try {
-        await createStone(fields, userId);
+        await createStone(fields, user);
         res.redirect("/catalog");
     } catch (err) {
         res.render("create", { errors: errorParser(err).errors, fields });
@@ -40,10 +40,10 @@ stonesRouter.post("/edit/:id", isUser(), async(req, res) => {
         return;
     }
     let fields = req.body;
-    let userId = req.user._id;
+    let user = req.user;
     let stone = await getStoneById(stoneId).lean();
     try {
-        let newStone = await editStone(stoneId, fields, userId);
+        let newStone = await editStone(stoneId, fields, user);
         res.redirect(`/details/${newStone._id.toString()}`);
     } catch (err) {
         res.render("edit", { errors: errorParser(err).errors, stone });
