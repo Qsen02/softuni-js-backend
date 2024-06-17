@@ -1,0 +1,13 @@
+<section id="all-course-page">
+    <article class="all-course-title">
+        <h1>All Courses</h1>
+    </article>
+
+    {{#each courses}}
+       {{> catalogCourses}}
+    {{else}}
+    <article class="not-available-courses">
+        <h1>No course created yet.</h1>
+    </article>
+    {{/each}}
+</section>
