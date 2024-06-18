@@ -1,11 +1,14 @@
 const bcrypt = require("bcrypt");
 const { Users } = require("../models/user");
 
-//TODO add email or username depends on the exam
 async function register(email, username, password) {
-    let user = await Users.findOne({ email }).lean();
-    if (user) {
+    let userEmail = await Users.findOne({ email }).lean();
+    if (userEmail) {
         throw new Error("This user already exists!");
+    }
+    let userUsername = await Users.findOne({ username }).lean();
+    if (userUsername) {
+        throw new Error("This username is already taken!");
     }
     let newUser = new Users({
         email: email,

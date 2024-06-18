@@ -37,7 +37,7 @@ courseRouter.get("/edit/:id", isUser(), async(req, res) => {
     let courseId = req.params.id;
     let isValid = await checkCourseId(courseId);
     if (!isValid) {
-        res.render("404");
+        res.render("404", { title: "404 page" });
         return;
     }
     let course = await getCourseById(courseId).lean();
