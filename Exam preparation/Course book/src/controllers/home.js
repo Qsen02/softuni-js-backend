@@ -37,11 +37,11 @@ homeRouter.get("/details/:id", async(req, res) => {
 
 homeRouter.get("/profile", isUser(), async(req, res) => {
     let user = req.user;
-    let signedCourses = await getSignUpCourses(user);
-    let signedCoursesCount = signedCourses.length;
+    let userObject = await getSignUpCourses(user).lean();
+    let signedCoursesCount = userObject.courseList.length;
     let createdCourses = await getCreatedCourses(user).lean();
     let createdCoursesCount = createdCourses.length;
-    res.render("profile", { signedCourses, signedCoursesCount, createdCourses, createdCoursesCount });
+    res.render("profile", { signedCourses: userObject.courseList, signedCoursesCount, createdCourses, createdCoursesCount });
 })
 
 module.exports = {

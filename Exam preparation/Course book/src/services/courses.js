@@ -1,4 +1,5 @@
 const { Courses } = require("../models/courses");
+const { Users } = require("../models/user");
 
 function getAllCourses() {
     let data = Courses.find();
@@ -41,6 +42,8 @@ async function checkCourseId(id) {
 
 async function signing(courseId, user) {
     await Courses.findByIdAndUpdate(courseId, { $push: { signUpList: user._id } });
+    let course = await Courses.findById(courseId).lean();
+    await Users.findByIdAndUpdate(user._id, { $push: { courseList: course._id } });
 }
 
 function getCreatedCourses(user) {
@@ -48,10 +51,9 @@ function getCreatedCourses(user) {
     return data;
 }
 
-async function getSignUpCourses(user) {
-    let allCourses = await Courses.find().lean();
-    let data = allCourses.filter(el => el.signUpList.map(el => el.toString()).includes(user._id.toString()));
-    return data;
+function getSignUpCourses(user) {
+    let curUser = Users.findById(user._id).populate('courseList');
+    return curUser;
 }
 
 module.exports = {

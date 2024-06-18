@@ -13,6 +13,11 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         require: true
+    },
+    courseList: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        ref: "Courses",
+        default: []
     }
 }, {
     collation: {
