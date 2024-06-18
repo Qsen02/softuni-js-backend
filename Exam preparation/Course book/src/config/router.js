@@ -10,8 +10,7 @@ function routerConfig(app) {
     app.use(homeRouter);
 
     app.get("*", (req, res) => {
-        req.title = "404 page";
-        res.render("404", { title });
+        res.render("404");
     })
 }
 
