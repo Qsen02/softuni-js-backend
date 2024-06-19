@@ -1,0 +1,14 @@
+<section class="volcano-catalog">
+    <h1 id="title"><span>Volcano</span> Catalog</h1>
+    {{#if isEmpty}}
+    <div class="no-volcano">
+        <p>There are no volcano found yet!</p>
+    </div>
+    {{else}}
+    <div class="item-list">
+        {{#each volcanoes}}
+        {{> volcanoes}}
+        {{/each}}
+    </div>
+    {{/if}}
+</section>

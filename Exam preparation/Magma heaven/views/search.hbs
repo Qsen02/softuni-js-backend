@@ -1,0 +1,30 @@
+<section class="volcano-search">
+    <h1>Search</h1>
+
+    <form class="search-form" action="/search" method="get">
+        <input type="text" class="search-volcano" name="name" placeholder="Search by Name...">
+        <select id="type" name="typeVolcano">
+            <option value="" selected></option>
+            <option value="Supervolcanoes">Supervolcanoes</option>
+            <option value="Submarine">Submarine</option>
+            <option value="Subglacial">Subglacial</option>
+            <option value="Mud">Mud</option>
+            <option value="Stratovolcanoes">Stratovolcanoes</option>
+            <option value="Shield">Shield</option>
+        </select>
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+    {{#if isEmpty}}
+     <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{else}}
+   <div class="search-result">
+        <div class="search-list">
+            {{#each volcanoes}}
+            {{> volcanoes}}
+            {{/each}}
+        </div>
+    </div>
+    {{/if}}
+</section>

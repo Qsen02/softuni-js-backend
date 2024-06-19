@@ -1,0 +1,49 @@
+{{#if errors}}
+<div>
+    <div class="errorContainer">
+        {{#each errors}}
+        <p>{{this}}</p>
+        {{/each}}
+    </div>
+</div>
+{{/if}}
+<section id="create-container">
+    <div class="create-container-info">
+        <h1>Create Volcano Wiki</h1>
+        <form method="post" name="create-form">
+            <label>Name:</label>
+            <input type="text" id="name" name="name" placeholder="..." {{#if fields.name}}value="{{fields.name}}"
+                {{/if}}>
+            <label>Location:</label>
+            <input type="text" id="location" name="location" placeholder="..." {{#if
+                fields.location}}value="{{fields.location}}" {{/if}}>
+            <label>Elevation:</label>
+            <input type="number" id="elevations" name="elevation" placeholder="..." {{#if
+                fields.elevation}}value="{{fields.elevation}}" {{/if}}>
+            <label>Year of Last Eruption:</label>
+            <input type="number" id="last-year-eruption" name="lastEruption" placeholder="..." {{#if
+                fields.lastEruption}}value="{{fields.lastEruption}}" {{/if}}>
+            <label>Image:</label>
+            <input type="text" id="image" name="image" placeholder="http://..." {{#if
+                fields.image}}value="{{fields.image}}" {{/if}}>
+            <label>Volcano Type:</label>
+            <select id="type" name="typeVolcano">
+                {{#if fields.typeVolcano}}
+                <option value="{{fields.typeVolcano}}" selected>{{fields.typeVolcano}}</option>
+                {{else}}
+                <option value="" selected></option>
+                {{/if}}
+                <option value="Supervolcanoes">Supervolcanoes</option>
+                <option value="Submarine">Submarine</option>
+                <option value="Subglacial">Subglacial</option>
+                <option value="Mud">Mud</option>
+                <option value="Stratovolcanoes">Stratovolcanoes</option>
+                <option value="Shield">Shield</option>
+            </select>
+            <label>Description:</label>
+            <textarea id="description" name="description"
+                placeholder="...">{{#if fields.description}}{{fields.description}}{{/if}}</textarea>
+            <input type="submit" id="btn" value="Submit"></input>
+        </form>
+    </div>
+</section>
