@@ -1,0 +1,30 @@
+<section id="detailsPage">
+    <div id="detailsInfo">
+        <h1>Name: {{offer.name}}</h1>
+        <div class="info"><img src="{{offer.image}}"></div>
+
+        <div class="info">
+            <h3>Type: {{offer.type}}</h3>
+            <h3>Year of Production: {{offer.production}}</h3>
+            <h3>Years of Exploitation: {{offer.exploitation}}</h3>
+            <h3>Damages: {{offer.damages}}</h3>
+            <h3>Description: {{offer.description}}</h3>
+            <h2>Price: ${{offer.price}}</h2>
+        </div>
+
+        {{#if hasUser}}
+        <div class="buttons">
+            {{#if offer.isOwner}}
+            <a href="/products/edit/{{offer._id}}" class="edit-btn">Edit</a>
+            <a href="/products/delete/{{offer._id}}" class="delete-btn">Delete</a>
+            {{else}}
+                {{#if offer.isBought}}
+                <p><span class="buy">Thank You For Your Purchase</span></p>
+                {{else}}
+                <a href="/products/buy/{{offer._id}}" class="buy-btn">Buy</a>
+                {{/if}}
+            {{/if}}
+        </div>
+        {{/if}}
+    </div>
+</section>
