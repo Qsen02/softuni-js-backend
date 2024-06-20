@@ -34,11 +34,29 @@ async function checkElectronicsId(id) {
     return true;
 }
 
+async function buyElectronics(offerId, user) {
+    await Electronics.findByIdAndUpdate(offerId, { $push: { buyingList: user._id } });
+}
+
+function searching(values) {
+    let query = {};
+    if (values.name) {
+        query.name = new RegExp(values.name, "i");
+    }
+    if (values.type) {
+        query.type = new RegExp(values.type, "i");
+    }
+    let data = Electronics.find(query);
+    return data;
+}
+
 module.exports = {
     getAllelectronics,
     getElectronicsById,
     createElectronics,
     deleteElectronics,
     editElectronics,
-    checkElectronicsId
+    checkElectronicsId,
+    buyElectronics,
+    searching
 }

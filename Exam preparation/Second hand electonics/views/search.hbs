@@ -1,0 +1,22 @@
+<section class="search">
+    <h1>Search</h1>
+
+    <form class="search-form" method="get">
+        <input type="text" class="search-name" name="name" placeholder="Search Name..." {{#if query.name}}value="{{query.name}}"{{/if}}>
+        <input type="text" class="search-type" name="type" placeholder="Search Type..." {{#if query.type}}value="{{query.type}}"{{/if}}>
+        <button type="submit" class="btn-search">Search</button>
+    </form>
+    {{#if offers}}
+    <div class="search-result">
+        <div class="search-list">
+            {{#each offers}}
+            {{> electronics}}
+            {{/each}}
+        </div>
+    </div>
+    {{else}}
+    <div class="no-match">
+        <p>No match was found!</p>
+    </div>
+    {{/if}}
+</section>

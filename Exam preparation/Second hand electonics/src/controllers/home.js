@@ -1,5 +1,6 @@
 const { Router } = require("express");
-const { getAllelectronics, checkElectronicsId, getElectronicsById } = require("../services/electronics");
+const { getAllelectronics, checkElectronicsId, getElectronicsById, searching } = require("../services/electronics");
+const { isUser } = require("../middlewares/guards");
 
 const homeRouter = Router();
 
@@ -26,6 +27,12 @@ homeRouter.get("/catalog/:id", async(req, res) => {
         offer.isBought = Boolean(offer.buyingList.find(el => el.toString() == user._id.toString()));
     }
     res.render("details", { offer });
+})
+
+homeRouter.get("/products/search", isUser(), async(req, res) => {
+    let query = req.query;
+    let offers = await searching(query).lean();
+    res.render("search", { offers, query });
 })
 
 module.exports = {

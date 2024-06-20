@@ -2,7 +2,7 @@ const { Router } = require("express");
 const { isUser } = require("../middlewares/guards");
 const { body, validationResult } = require("express-validator");
 const { errorParser } = require("../util");
-const { createElectronics, deleteElectronics, checkElectronicsId, getElectronicsById, editElectronics } = require("../services/electronics");
+const { createElectronics, deleteElectronics, checkElectronicsId, getElectronicsById, editElectronics, buyElectronics } = require("../services/electronics");
 
 const electronicRouter = Router();
 
@@ -86,6 +86,18 @@ electronicRouter.post("/products/edit/:id",
             res.render("edit", { errors: errorParser(err).errors, fields });
         }
     });
+
+electronicRouter.get("/products/buy/:id", isUser(), async(req, res) => {
+    let offerId = req.params.id;
+    let user = req.user;
+    let isValid = await checkElectronicsId(offerId);
+    if (!isValid) {
+        res.render("404");
+        return;
+    }
+    await buyElectronics(offerId, user);
+    res.redirect(`/catalog/${offerId}`);
+})
 
 module.exports = {
     electronicRouter
