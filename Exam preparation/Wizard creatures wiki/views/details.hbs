@@ -1,0 +1,58 @@
+<section id="details-page">
+
+    <div class="main_card">
+        <div class="card_left">
+            <div class="card_datails">
+
+                <h1>Name: {{creature.name}}</h1>
+                <h3>Created by an author: {{creature.owner.firstname}} {{creature.owner.lastname}}</h3>
+                <div class="card_character">
+                    <p class="card-species">Species: {{creature.species}}</p>
+                    <p class="card-skin">Skin colour: {{creature.skinColor}}</p>
+                    <p class="card-eye">Eye Colour: {{creature.eyeColor}}</p>
+                </div>
+
+                <p class="disc">Description: {{creature.description}}</p>
+                {{#if hasUser}}
+                <div class="social-btn">
+                    {{#if creature.isOwner}}
+                    <a href="/catalog/{{creature._id}}/edit" class="edit-btn">Edit</a>
+                    <a href="/catalog/{{creature._id}}/delete" class="del-btn">Delete</a>
+                    {{else}}
+                        {{#if creature.isLiked}}
+                        <p class="thanks-for-vote">Thanks For Voting</p>
+                        {{else}}
+                        <a href="/catalog/{{creature._id}}/vote" class="vote-up">Vote</a>
+                        {{/if}}
+                    {{/if}}
+                </div>
+                {{/if}}
+            </div>
+        </div>
+        <div class="card_right">
+            <img src="{{creature.image}}" alt="image">
+        </div>
+    </div>
+
+</section>
+
+<section id="votes">
+    <div class="vote-info">
+        <div class="card_left">
+            <div class="card_datails">
+                <h1>Votes</h1>
+                <div class="card_vote">
+                    <p class="PV">Total rating of votes: {{creature.voteCount}}</p>
+                </div>
+                {{#if creature.votes}}
+                <p class="disc">
+                People who voted for the post - {{#each creature.votes}}{{email}}, {{/each}}
+                </p>
+                {{else}}
+                <p class="disc">People who voted for the post - No one has voted yet.</p>
+                {{/if}}
+            </div>
+        </div>
+    </div>
+    </div>
+</section>

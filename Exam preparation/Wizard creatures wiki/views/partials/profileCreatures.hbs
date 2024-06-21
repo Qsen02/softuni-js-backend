@@ -1,0 +1,16 @@
+<div class="card-header">
+    <img src="{{image}}" />
+</div>
+<div class="card-body">
+    <span class="tag tag-teal">Species: {{species}}</span>
+    <h4>
+        Name: {{name}}
+    </h4>
+    <div class="user">
+        <div class="user-info">
+            <h5>Author: {{owner.firstname}} {{owner.lastname}}</h5>
+            <small>Rating of votes: {{voteCount}}</small>
+            <a href="/catalog/{{_id}}" class="details_btn">Details</a>
+        </div>
+    </div>
+</div>
