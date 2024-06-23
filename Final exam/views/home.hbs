@@ -1,0 +1,15 @@
+<section class="hero">
+    <h2>Welcome to Home Cooking Recipes</h2>
+    <p>Your go-to place for delicious and easy-to-make recipes.</p>
+    <a href="/catalog" class="btn">Explore Recipes</a>
+</section>
+<section class="featured-recipes">
+    <h2>Featured Recipes</h2>
+    <div class="recipes">
+        {{#each recipies}}
+        {{> recipies}}
+        {{else}}
+        <p class="no-post">There are no recipes found yet!</p>
+        {{/each}}
+    </div>
+</section>

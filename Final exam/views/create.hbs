@@ -1,0 +1,21 @@
+<section class="form-container">
+    <h2>Create Recipe</h2>
+    <form method="post">
+        <label for="title">Recipe Title:</label>
+        <input type="text" id="title" name="title" {{#if fields.title}}value="{{fields.title}}"{{/if}}>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{#if fields.description}}{{fields.description}}{{/if}}</textarea>
+
+        <label for="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients">{{#if fields.ingredients}}{{fields.ingredients}}{{/if}}</textarea>
+
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions">{{#if fields.instructions}}{{fields.instructions}}{{/if}}</textarea>
+
+        <label for="image">Image URL:</label>
+        <input type="url" id="image" name="image" {{#if fields.image}}value="{{fields.image}}"{{/if}}>
+
+        <button type="submit">Create Recipe</button>
+    </form>
+</section>

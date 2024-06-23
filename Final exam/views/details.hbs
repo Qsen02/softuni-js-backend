@@ -1,0 +1,34 @@
+<article class="recipe-detail">
+    <img src="{{recipie.image}}" alt="{{recipie.title}}">
+    <h2>{{recipie.title}}</h2>
+    <p>{{recipie.description}}</p>
+
+    <h3>-----------------------------------------------------</h3>
+
+    <h3>Ingredients:</h3>
+    <p>{{recipie.ingredients}}</p>
+
+    <h3>-----------------------------------------------------</h3>
+
+    <h3>Instructions:</h3>
+    <p>{{recipie.instructions}}</p>
+
+    <h3>-----------------------------------------------------</h3>
+
+    <h3>People Who Recommend: {{recipie.recommendCount}}</h3>
+</article>
+
+{{#if hasUser}}
+<div class="command">
+    {{#if recipie.isOwner}}
+    <a href="/catalog/{{recipie._id}}/edit">Edit</a>
+    <a href="/catalog/{{recipie._id}}/delete">Delete</a>
+    {{else}}
+        {{#if recipie.isRecommend}}
+        <p>You've already recommended this recipe!</p>
+        {{else}}
+        <a href="/catalog/{{recipie._id}}/recommend">Recommend</a>
+        {{/if}}
+    {{/if}}
+</div>
+{{/if}}

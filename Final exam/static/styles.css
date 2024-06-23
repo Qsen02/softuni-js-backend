@@ -1,0 +1,459 @@
+/* Reset some default styles */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li,
+a,
+button,
+input,
+textarea {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  line-height: 1.6;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+/* Header styles */
+header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1em 0;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5em 1em;
+  border-radius: 4px;
+  transition: background 0.3s, transform 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #3498db;
+  transform: scale(1.05);
+}
+
+/* Main section */
+main {
+  padding: 2em 1em;
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.hero {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.no-post {
+  font-size: 30px;
+  font-style: italic;
+  margin-top: 50px;
+  border-top: 1px solid #2c3e50;
+  padding-top: 30px;
+}
+
+.hero .btn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 700;
+  margin-top: 1em;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0.5em;
+  font-size: 2.5em;
+  color: #2c3e50;
+  font-weight: 700;
+}
+
+/* Catalog specific styles */
+.recipes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2em;
+  justify-items: center;
+}
+
+.recipe {
+  background: white;
+  padding: 1em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+}
+
+.recipe:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.recipe img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1em;
+  transition: transform 0.3s;
+}
+
+.recipe:hover img {
+  transform: scale(1.05);
+}
+
+.recipe h3 {
+  background-color: #2c3e50;
+  color: white;
+  padding: 0.5em;
+  border-radius: 4px;
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+.recipe p {
+  margin: 1em 0;
+  color: #555;
+  height: 60px; /* Ensures consistent height */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recipe a {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 700;
+  margin-top: 1em;
+}
+
+.recipe a:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Recipe detail styles */
+.recipe-detail {
+  background: white;
+  padding: 2em;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  max-width: 800px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.recipe-detail:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-detail img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1em;
+  transition: transform 0.3s;
+}
+
+.recipe-detail:hover img {
+  transform: scale(1.05);
+}
+
+.recipe-detail h2 {
+  background-color: #2c3e50;
+  color: white;
+  padding: 0.5em;
+  border-radius: 4px;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.recipe-detail h3 {
+  color: #2c3e50;
+  margin-top: 1em;
+  font-size: 1.2em;
+  font-weight: 700;
+}
+
+.recipe-detail ul,
+.recipe-detail ol {
+  text-align: left;
+  margin: 1em 0;
+  padding: 0 1em;
+  color: #555;
+}
+
+.recipe-detail ul li,
+.recipe-detail ol li {
+  margin-bottom: 0.5em;
+}
+
+.command {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.command a {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 700;
+  margin-top: 1em;
+  margin-left: 20px;
+}
+
+.command p {
+  background-color: #3498db;
+  color: white;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 700;
+  margin-top: 1em;
+  margin-left: 20px;
+}
+
+/* Register and Login Page*/
+
+.form-container {
+  background: white;
+  padding: 2em;
+  margin: 2.9em auto;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+}
+
+.form-container {
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 1em;
+  color: #282c34;
+  font-size: 1.5em;
+  font-weight: 700;
+}
+
+.form-container label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: #555;
+}
+
+.form-container input,
+.form-container textarea,
+.form-container button {
+  width: 100%;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+}
+
+.form-container button {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 700;
+}
+
+.form-container button:hover {
+  background-color: #21a1f1;
+  transform: scale(1.05);
+}
+.error-page {
+  text-align: center;
+  padding: 4em 1em;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 4em auto;
+}
+
+.error-page h2 {
+  font-size: 6em;
+  color: #2c3e50;
+  margin-bottom: 0.5em;
+  font-weight: 700;
+}
+
+.error-page p {
+  font-size: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+.error-page .btn {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75em 1.5em;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.error-page .btn:hover {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+/* Search styles */
+.search-container {
+  text-align: center;
+}
+
+.search-container form input {
+  width: 60%;
+  padding: 0.75em;
+  margin-bottom: 1em;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1em;
+}
+
+.search-container form button {
+  background-color: #3498db;
+  color: white;
+  padding: 0.75em 1.5em;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: 700;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2em;
+  justify-items: center;
+}
+
+.no-match {
+  font-size: 30px;
+  font-style: italic;
+  margin-top: 50px;
+  border-top: 1px solid #2c3e50;
+  padding-top: 70px;
+}
+
+/* Footer styles */
+footer {
+  background-color: #2c3e50;
+  color: white;
+  text-align: center;
+  padding: 1em 0;
+  margin-top: 2em;
+  font-size: 0.9em;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+.error-container {
+  position: fixed;
+  right: 5em;
+  min-width: 80px;
+  display: block;
+  z-index: 11111;
+  top: 13%;
+  text-align: center;
+  border-radius: 0.5rem;
+  color: rgb(255, 255, 255);
+  font-style: italic;
+  font-weight: bold;
+  height: auto;
+  width: 300px;
+  padding: 1em;
+}
+
+.error-container > p {
+  background: #2c3e50;
+  font-size: 18px;
+  padding: 10px;
+  height: auto;
+}
+
+.error-container {
+  -moz-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 2s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 2s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    padding: 0;
+  }
+}
+
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+    padding: 0;
+  }
+}

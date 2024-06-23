@@ -1,0 +1,20 @@
+<section class="form-container">
+    <h2>Edit Recipe</h2>
+    <form method="post">
+        <label for="title">Recipe Title:</label>
+        <input type="text" id="title" name="title" value="{{fields.title}}">
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description">{{fields.description}}</textarea>
+
+        <label for="ingredients">Ingredients:</label>
+        <textarea id="ingredients" name="ingredients">{{fields.ingredients}}</textarea>
+
+        <label for="instructions">Instructions:</label>
+        <textarea id="instructions" name="instructions">{{fields.instructions}}</textarea>
+
+        <label for="image">Image URL:</label>
+        <input type="url" id="image" name="image" value="{{fields.image}}">
+        <button type="submit">Save Changes</button>
+    </form>
+</section>

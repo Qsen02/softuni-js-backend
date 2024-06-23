@@ -1,0 +1,13 @@
+<section class="form-container">
+    <h2>Login</h2>
+    <form method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" {{#if email}}value="{{email}}"{{/if}}>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+
+        <button type="submit">Login</button>
+    </form>
+    <p>Don't have an account? <a href="/register">Register here</a>.</p>
+</section>
