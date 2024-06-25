@@ -10,9 +10,8 @@ function getFurnitureById(id) {
     return data;
 }
 
-async function createFurniture(data, user) {
-    let newData = new Data(data);
-    newData.ownerId = user._id;
+async function createFurniture(data) {
+    let newData = new Furnitures(data);
     await newData.save();
     return newData;
 }
@@ -34,11 +33,17 @@ async function checkFurnitureId(id) {
     return true;
 }
 
+function getAuthorCreation(userId) {
+    let data = Furnitures.find({ ownerId: userId });
+    return data;
+}
+
 module.exports = {
     getAllFurnitures,
     getFurnitureById,
     createFurniture,
     deleteFurniture,
     editFurniture,
-    checkFurnitureId
+    checkFurnitureId,
+    getAuthorCreation
 }

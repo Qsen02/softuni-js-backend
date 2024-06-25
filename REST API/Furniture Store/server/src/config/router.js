@@ -1,6 +1,9 @@
 const { catalogRouter } = require("../controllers/catalog");
+const { userRouter } = require("../controllers/user");
 
 function routerConfig(app) {
+    app.use("/users", userRouter);
+
     app.use("/data/catalog", catalogRouter);
 
     app.get("*", (req, res) => {

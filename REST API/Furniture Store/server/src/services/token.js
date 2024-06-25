@@ -8,9 +8,9 @@ function setToken(user) {
         email: user.email
     }
 
-    let token = jwt.sign(payload, secret, { expiresIn: "3d" });
+    let accesstoken = jwt.sign(payload, secret, { expiresIn: "3d" });
 
-    return token;
+    return { payload, accesstoken };
 }
 
 function verifyToken(token) {

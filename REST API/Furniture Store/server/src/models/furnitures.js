@@ -27,7 +27,6 @@ const furnitureSchema = new mongoose.Schema({
     },
     material: {
         type: String,
-        require: true
     },
     ownerId: {
         type: mongoose.SchemaTypes.ObjectId,

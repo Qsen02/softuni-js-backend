@@ -5,8 +5,7 @@ function session() {
         let token = req.headers["X-Authorization"];
         if (token) {
             try {
-                let verifiedToken = verifyToken(token);
-                req.user = verifiedToken;
+                verifyToken(token);
             } catch (err) {
                 res.status(403).json({ message: "Invalid or expired token!" });
             }

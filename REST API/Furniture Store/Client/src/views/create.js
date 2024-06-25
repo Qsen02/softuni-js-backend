@@ -35,7 +35,7 @@ const createTemplate = (onSubmit) => html `<div class="row space-top">
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="new-image">Image</label>
-                <input class="form-control" id="new-image" type="text" name="img">
+                <input class="form-control" id="new-image" type="text" name="image">
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="new-material">Material (optional)</label>
@@ -53,14 +53,15 @@ export async function createPage(ctx) {
         event.preventDefault();
         const formData = new FormData(event.target);
         const data = [...formData.entries()].reduce((a, [k, v]) => Object.assign(a, {
-            [k]: v }), {});
-
+            [k]: v
+        }), {});
         if (Object.entries(data).filter(([k, v]) => k != 'material').some(([k, v]) => v == '')) {
             return alert('Please fill all mandatory fields!');
         }
 
         data.year = Number(data.year);
         data.price = Number(data.price);
+        data.ownerId = sessionStorage.getItem("userId");
         await createRecord(data);
 
         ctx.page.redirect('/');

@@ -1,22 +1,12 @@
 function isUser() {
     return function(req, res, next) {
-        if (!req.user) {
-            return res.redirect("/login");
-        }
-        next();
-    }
-}
-
-function isGuest() {
-    return function(req, res, next) {
-        if (req.user) {
-            return res.redirect("/");
+        if (!req.headers['x-authorization']) {
+            return res.status(401).json({ message: "You are not allowed to do this!" });
         }
         next();
     }
 }
 
 module.exports = {
-    isGuest,
     isUser
 }

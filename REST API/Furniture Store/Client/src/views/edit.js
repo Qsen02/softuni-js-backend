@@ -2,7 +2,7 @@ import { html } from '../../node_modules/lit-html/lit-html.js';
 import { getItemById, editRecord } from '../api/data.js';
 
 
-const editTemplate = (item, onSubmit) => html`
+const editTemplate = (item, onSubmit) => html `
 <div class="row space-top">
     <div class="col-md-12">
         <h1>Edit Furniture</h1>
@@ -36,7 +36,7 @@ const editTemplate = (item, onSubmit) => html`
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="new-image">Image</label>
-                <input class="form-control" id="new-image" type="text" name="img" .value=${item.img}>
+                <input class="form-control" id="new-image" type="text" name="img" .value=${item.image}>
             </div>
             <div class="form-group">
                 <label class="form-control-label" for="new-material">Material (optional)</label>
@@ -56,9 +56,10 @@ export async function editPage(ctx) {
     async function onSubmit(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const data = [...formData.entries()].reduce((a, [k, v]) => Object.assign(a, { [k]: v }), {});
+        const data = [...formData.entries()].reduce((a, [k, v]) => Object.assign(a, {
+            [k]: v }), {});
 
-        if (Object.entries(data).filter(([k,v]) => k != 'material').some(([k, v]) => v == '')) {
+        if (Object.entries(data).filter(([k, v]) => k != 'material').some(([k, v]) => v == '')) {
             return alert('Please fill all mandatory fields!');
         }
 
